@@ -1,154 +1,155 @@
-import style from "./css/style.css";
-import style_alt from "./css/style-alt.css";
-import style_alt_theme from "./css/style-alt-theme.css";
+import style from './css/style.css';
+import style_alt from './css/style-alt.css';
+import style_alt_theme from './css/style-alt-theme.css';
 
 // Configuration options
 const options = {
-  init_phones: [], // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
-  DIR: "data_rohsa/", // Directory where graph files are stored
-  default_channels: ["L", "R"], // Which channels to display. Avoid javascript errors if loading just one channel per phone
-  default_normalization: "Hz", // Sets default graph normalization mode. Accepts "dB" or "Hz"
-  default_norm_db: 60, // Sets default dB normalization point
-  default_norm_hz: 500, // Sets default Hz normalization point (500Hz is recommended by IEC)
-  max_channel_imbalance: 5, // Channel imbalance threshold to show ! in the channel selector
-  alt_layout: true, // Toggle between classic and alt layouts
-  alt_sticky_graph: true, // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
-  alt_animated: false, // Determines if new graphs are drawn with a 1-second animation, or appear instantly
-  alt_header: true, // Display a configurable header at the top of the alt layout
-  alt_tutorial: true, // Display a configurable frequency response guide below the graph
-  site_url: "./", // URL of your graph "homepage"
-  share_url: true, // If true, enables shareable URLs
-  watermark_text: "Rohsa Graph Tool (CrinGraph)", // Optional. Watermark appears behind graphs
-  watermark_image_url: "data_rohsa/icon_watermark.png", // Optional. If image file is in same directory as config, can be just the filename
-  page_title: "Rohsa Graph Tool (CrinGraph)", // Optional. Appended to the page title if share URLs are enabled
-  page_description: "View and compare frequency response graphs for earphones",
-  accessories: false, // If true, displays specified HTML at the bottom of the page. Configure further below
-  externalLinksBar: true, // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
-  restricted: false, // Enables restricted mode. More restricted options below
-  expandable: false, // Enables button to expand iframe over the top of the parent page
-  expandableOnly: false, // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
-  headerHeight: "0px", // Optional. If expandable=true, determines how much space to leave for the parent page header
-  darkModeButton: true, // Adds a "Dark Mode" button the main toolbar to let users set preference
-  targetDashed: false, // If true, makes target curves dashed lines
-  targetColorCustom: false, // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
-  labelsPosition: "bottom-right", // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
-  stickyLabels: true, // "Sticky" labels
-  analyticsEnabled: false, // Enables Google Analytics 4 measurement of site usage
-  extraEnabled: true, // Enable extra features
-  extraUploadEnabled: true, // Enable upload function
-  extraEQEnabled: true, // Enable parametic eq function
-  extraEQBands: 10, // Default EQ bands available
-  extraEQBandsMax: 20, // Max EQ bands available
-  extraToneGeneratorEnabled: true, // Enable tone generator function
-  targets: [
-    // Specify which targets to display
-    {
-      type: "Reference",
-      files: [
-        "IEF IEM",
-        "IEF HP",
-        "Free Field",
-        "Diffuse Field",
-        "Harman IE 2016",
-        "Harman IE 2019 v2",
-        "Harman OE 2018",
-      ],
-    },
-    {
-      type: "Personal",
-      files: [
-        "Banbeu",
-        "Precog",
-        "Super Review",
-        "Rohsa A",
-        "Rohsa B",
-        "Rohsa C",
-        "Rohsa D",
-      ],
-    },
-  ],
-  linkSets: [
-    // Configure external links to appear at the bottom of the page. Displayed only if externalLinksBar (above) is true
-    {
-      label: "IEM graph databases",
-      links: [
+    init_phones: [], // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
+    DIR: 'data_rohsa/', // Directory where graph files are stored
+    default_channels: ['L', 'R'], // Which channels to display. Avoid javascript errors if loading just one channel per phone
+    default_normalization: 'Hz', // Sets default graph normalization mode. Accepts "dB" or "Hz"
+    default_norm_db: 60, // Sets default dB normalization point
+    default_norm_hz: 500, // Sets default Hz normalization point (500Hz is recommended by IEC)
+    max_channel_imbalance: 5, // Channel imbalance threshold to show ! in the channel selector
+    alt_layout: true, // Toggle between classic and alt layouts
+    alt_sticky_graph: true, // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
+    alt_animated: false, // Determines if new graphs are drawn with a 1-second animation, or appear instantly
+    alt_header: true, // Display a configurable header at the top of the alt layout
+    alt_tutorial: true, // Display a configurable frequency response guide below the graph
+    site_url: './', // URL of your graph "homepage"
+    share_url: true, // If true, enables shareable URLs
+    watermark_text: 'Rohsa Graph Tool (CrinGraph)', // Optional. Watermark appears behind graphs
+    watermark_image_url: 'data_rohsa/icon_watermark.png', // Optional. If image file is in same directory as config, can be just the filename
+    page_title: 'Rohsa Graph Tool (CrinGraph)', // Optional. Appended to the page title if share URLs are enabled
+    page_description:
+        'View and compare frequency response graphs for earphones',
+    accessories: false, // If true, displays specified HTML at the bottom of the page. Configure further below
+    externalLinksBar: true, // If true, displays row of pill-shaped links at the bottom of the page. Configure further below
+    restricted: false, // Enables restricted mode. More restricted options below
+    expandable: false, // Enables button to expand iframe over the top of the parent page
+    expandableOnly: false, // Prevents iframe interactions unless the user has expanded it. Accepts "true" or "false" OR a pixel value; if pixel value, that is used as the maximum width at which expandableOnly is used
+    headerHeight: '0px', // Optional. If expandable=true, determines how much space to leave for the parent page header
+    darkModeButton: true, // Adds a "Dark Mode" button the main toolbar to let users set preference
+    targetDashed: false, // If true, makes target curves dashed lines
+    targetColorCustom: false, // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
+    labelsPosition: 'bottom-right', // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
+    stickyLabels: true, // "Sticky" labels
+    analyticsEnabled: false, // Enables Google Analytics 4 measurement of site usage
+    extraEnabled: true, // Enable extra features
+    extraUploadEnabled: true, // Enable upload function
+    extraEQEnabled: true, // Enable parametic eq function
+    extraEQBands: 10, // Default EQ bands available
+    extraEQBandsMax: 20, // Max EQ bands available
+    extraToneGeneratorEnabled: true, // Enable tone generator function
+    targets: [
+        // Specify which targets to display
         {
-          name: "Banbeucmas",
-          url: "https://banbeu.com/graph/tool/",
+            type: 'Reference',
+            files: [
+                'IEF IEM',
+                'IEF HP',
+                'Free Field',
+                'Diffuse Field',
+                'Harman IE 2016',
+                'Harman IE 2019 v2',
+                'Harman OE 2018',
+            ],
         },
         {
-          name: "In-Ear Fidelity",
-          url: "https://crinacle.com/graphs/iems/graphtool/",
+            type: 'Personal',
+            files: [
+                'Banbeu',
+                'Precog',
+                'Super Review',
+                'Rohsa A',
+                'Rohsa B',
+                'Rohsa C',
+                'Rohsa D',
+            ],
+        },
+    ],
+    linkSets: [
+        // Configure external links to appear at the bottom of the page. Displayed only if externalLinksBar (above) is true
+        {
+            label: 'IEM graph databases',
+            links: [
+                {
+                    name: 'Banbeucmas',
+                    url: 'https://banbeu.com/graph/tool/',
+                },
+                {
+                    name: 'In-Ear Fidelity',
+                    url: 'https://crinacle.com/graphs/iems/graphtool/',
+                },
+                {
+                    name: 'Precogvision',
+                    url: 'https://precog.squig.link/',
+                },
+                {
+                    name: 'Super* Review',
+                    url: 'https://squig.link/',
+                },
+            ],
         },
         {
-          name: "Precogvision",
-          url: "https://precog.squig.link/",
+            label: 'Headphones',
+            links: [
+                {
+                    name: 'In-Ear Fidelity',
+                    url: 'https://crinacle.com/graphs/headphones/graphtool/',
+                },
+                {
+                    name: 'Super* Review',
+                    url: 'https://squig.link/hp.html',
+                },
+            ],
+        },
+    ],
+    headerLogoText: 'Rohsa Graph Tool', // If alt_header is enabled, these are the items added to the header
+    headerLogoImgUrl: null,
+    headerLinks: [
+        {
+            name: 'Workshop',
+            url: 'https://rohsa.gitlab.io',
+        },
+    ],
+    tutorialDefinitions: [
+        {
+            name: 'Sub bass',
+            width: '20.1%',
+            description: 'Lorem ipsum.',
         },
         {
-          name: "Super* Review",
-          url: "https://squig.link/",
-        },
-      ],
-    },
-    {
-      label: "Headphones",
-      links: [
-        {
-          name: "In-Ear Fidelity",
-          url: "https://crinacle.com/graphs/headphones/graphtool/",
+            name: 'Mid bass',
+            width: '19.2%',
+            description: 'Lorem ipsum.',
         },
         {
-          name: "Super* Review",
-          url: "https://squig.link/hp.html",
+            name: 'Lower midrange',
+            width: '17.4%',
+            description: 'Lorem ipsum.',
         },
-      ],
-    },
-  ],
-  headerLogoText: "Rohsa Graph Tool", // If alt_header is enabled, these are the items added to the header
-  headerLogoImgUrl: null,
-  headerLinks: [
-    {
-      name: "Workshop",
-      url: "https://rohsa.gitlab.io",
-    },
-  ],
-  tutorialDefinitions: [
-    {
-      name: "Sub bass",
-      width: "20.1%",
-      description: "Lorem ipsum.",
-    },
-    {
-      name: "Mid bass",
-      width: "19.2%",
-      description: "Lorem ipsum.",
-    },
-    {
-      name: "Lower midrange",
-      width: "17.4%",
-      description: "Lorem ipsum.",
-    },
-    {
-      name: "Upper midrange",
-      width: "20%",
-      description: "Lorem ipsum.",
-    },
-    {
-      name: "Presence region",
-      width: "6%",
-      description: "Lorem ipsum.",
-    },
-    {
-      name: "Mid treble",
-      width: "7.3%",
-      description: "Lorem ipsum.",
-    },
-    {
-      name: "Air",
-      width: "10%",
-      description: "Lorem ipsum.",
-    },
-  ],
+        {
+            name: 'Upper midrange',
+            width: '20%',
+            description: 'Lorem ipsum.',
+        },
+        {
+            name: 'Presence region',
+            width: '6%',
+            description: 'Lorem ipsum.',
+        },
+        {
+            name: 'Mid treble',
+            width: '7.3%',
+            description: 'Lorem ipsum.',
+        },
+        {
+            name: 'Air',
+            width: '10%',
+            description: 'Lorem ipsum.',
+        },
+    ],
 };
 
 // *************************************************************
@@ -157,100 +158,100 @@ const options = {
 
 // Set up the watermark, based on config options above
 function watermark(svg, pad, H, W) {
-  let wm = svg
-    .append("g")
-    .attr(
-      "transform",
-      "translate(" + (pad.l + W / 2) + "," + (pad.t + H / 2 - 20) + ")"
-    )
-    .attr("opacity", 0.2);
+    let wm = svg
+        .append('g')
+        .attr(
+            'transform',
+            'translate(' + (pad.l + W / 2) + ',' + (pad.t + H / 2 - 20) + ')'
+        )
+        .attr('opacity', 0.2);
 
-  if (options.watermark_image_url) {
-    wm.append("image").attrs({
-      x: -64,
-      y: -64,
-      width: 128,
-      height: 128,
-      "xlink:href": options.watermark_image_url,
-    });
-  }
+    if (options.watermark_image_url) {
+        wm.append('image').attrs({
+            x: -64,
+            y: -64,
+            width: 128,
+            height: 128,
+            'xlink:href': options.watermark_image_url,
+        });
+    }
 
-  if (options.watermark_text) {
-    wm.append("text")
-      .attrs({
-        x: 0,
-        y: 70,
-        "font-size": 28,
-        "text-anchor": "middle",
-        class: "graph-name",
-      })
-      .text(options.watermark_text);
-  }
+    if (options.watermark_text) {
+        wm.append('text')
+            .attrs({
+                x: 0,
+                y: 70,
+                'font-size': 28,
+                'text-anchor': 'middle',
+                class: 'graph-name',
+            })
+            .text(options.watermark_text);
+    }
 }
 
 // Parse fr text data from REW or AudioTool format with whatever separator
 function tsvParse(fr) {
-  return fr
-    .split(/[\r\n]/)
-    .map((l) => l.trim())
-    .filter((l) => l && l[0] !== "*")
-    .map((l) =>
-      l
-        .split(/[\s,;]+/)
-        .map((e) => parseFloat(e))
-        .slice(0, 2)
-    )
-    .filter((t) => !isNaN(t[0]) && !isNaN(t[1]));
+    return fr
+        .split(/[\r\n]/)
+        .map((l) => l.trim())
+        .filter((l) => l && l[0] !== '*')
+        .map((l) =>
+            l
+                .split(/[\s,;]+/)
+                .map((e) => parseFloat(e))
+                .slice(0, 2)
+        )
+        .filter((t) => !isNaN(t[0]) && !isNaN(t[1]));
 }
 
 // Apply stylesheet based layout options above
 function setLayout() {
-  function applyStylesheet(styleSheet) {
-    var docHead = document.querySelector("head"),
-      styleTag = document.createElement("style");
-    styleTag.textContent = styleSheet;
-    docHead.append(styleTag);
-  }
+    function applyStylesheet(styleSheet) {
+        var docHead = document.querySelector('head'),
+            styleTag = document.createElement('style');
+        styleTag.textContent = styleSheet;
+        docHead.append(styleTag);
+    }
 
-  if (!options.alt_layout) {
-    applyStylesheet(style.toString());
-  } else {
-    applyStylesheet(style_alt.toString());
-    applyStylesheet(style_alt_theme.toString());
-  }
+    if (!options.alt_layout) {
+        applyStylesheet(style.toString());
+    } else {
+        applyStylesheet(style_alt.toString());
+        applyStylesheet(style_alt_theme.toString());
+    }
 }
 
 // Set restricted mode
 function setRestricted() {
-  if (options.restricted) {
-    options.max_compare = 2;
-    options.restrict_target = false;
-    options.isallow_target = true;
-    options.premium_html =
-      "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, <a target='_blank' href='https://crinacle.com/wp-login.php?action=register'>subscribe</a> or upgrade to Patreon <a target='_blank' href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a target='_blank' href='https://crinacle.com/graphs/iems/graphtool/premium/'>the premium tool</a>.</p>";
-  }
+    if (options.restricted) {
+        options.max_compare = 2;
+        options.restrict_target = false;
+        options.isallow_target = true;
+        options.premium_html =
+            "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, <a target='_blank' href='https://crinacle.com/wp-login.php?action=register'>subscribe</a> or upgrade to Patreon <a target='_blank' href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a target='_blank' href='https://crinacle.com/graphs/iems/graphtool/premium/'>the premium tool</a>.</p>";
+    }
 }
 
 // Set up analytics
 function setupGraphAnalytics() {
-  if (options.analyticsEnabled) {
-    const pageHead = document.querySelector("head"),
-      graphAnalytics = document.createElement("script"),
-      graphAnalyticsSrc = "graphAnalytics.js";
+    if (options.analyticsEnabled) {
+        const pageHead = document.querySelector('head'),
+            graphAnalytics = document.createElement('script'),
+            graphAnalyticsSrc = 'graphAnalytics.js';
 
-    graphAnalytics.setAttribute("src", graphAnalyticsSrc);
-    pageHead.append(graphAnalytics);
-  }
+        graphAnalytics.setAttribute('src', graphAnalyticsSrc);
+        pageHead.append(graphAnalytics);
+    }
 }
 
 // Configure HTML accessories to appear at the bottom of the page. Displayed only if accessories (above) is true
 // There are a few templates here for ease of use / examples, but these variables accept any HTML
 const // Short text, center-aligned, useful for a little side info, credits, links to measurement setup, etc.
-  simpleAbout = `
+    simpleAbout = `
         <p class="center">This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
     `,
-  // Slightly different presentation to make more readable paragraphs. Useful for elaborated methodology, etc.
-  paragraphs = `
+    // Slightly different presentation to make more readable paragraphs. Useful for elaborated methodology, etc.
+    paragraphs = `
         <h2>Viverra tellus in hac</h2>
 
         <p>Lorem ipsum dolor sit amet, <a href="">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque non tellus orci ac. Dictumst quisque sagittis purus sit amet volutpat consequat. Vitae nunc sed velit dignissim sodales ut. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus in. Dignissim enim sit amet venenatis urna cursus eget nunc. Mi proin sed libero enim. Ut sem viverra aliquet eget sit amet. Integer enim neque volutpat ac tincidunt vitae. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Lacus luctus accumsan tortor posuere ac ut consequat semper. Non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Aliquam sem et tortor consequat id. Cursus sit amet dictum sit amet justo donec. Donec adipiscing tristique risus nec feugiat in fermentum posuere.</p>
@@ -265,8 +266,8 @@ const // Short text, center-aligned, useful for a little side info, credits, lin
 
         <p>Scelerisque in dictum non consectetur a. Elit pellentesque habitant morbi tristique senectus et. Nulla aliquet enim tortor at auctor urna nunc id. In ornare quam viverra orci. Auctor eu augue ut lectus arcu bibendum at varius vel. In cursus turpis massa tincidunt dui ut ornare lectus. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. A diam sollicitudin tempor id. Tellus mauris a diam maecenas sed enim ut sem. Pellentesque id nibh tortor id aliquet lectus proin. Fermentum et sollicitudin ac orci phasellus. Dolor morbi non arcu risus quis. Bibendum enim facilisis gravida neque. Tellus in metus vulputate eu scelerisque felis. Integer malesuada nunc vel risus commodo. Lacus laoreet non curabitur gravida arcu.</p>
     `,
-  // Customize the count of widget divs, and customize the contents of them. As long as they're wrapped in the widget div, they should auto-wrap and maintain margins between themselves
-  widgets = `
+    // Customize the count of widget divs, and customize the contents of them. As long as they're wrapped in the widget div, they should auto-wrap and maintain margins between themselves
+    widgets = `
         <div class="accessories-widgets">
             <div class="widget">
                 <img width="200" src="cringraph-logo.svg"/>
@@ -281,14 +282,14 @@ const // Short text, center-aligned, useful for a little side info, credits, lin
             </div>
         </div>
     `,
-  // Which of the above variables to actually insert into the page
-  whichAccessoriesToUse = simpleAbout;
+    // Which of the above variables to actually insert into the page
+    whichAccessoriesToUse = simpleAbout;
 
 export default {
-  ...options,
-  watermark,
-  tsvParse,
-  setLayout,
-  setRestricted,
-  setupGraphAnalytics,
+    ...options,
+    watermark,
+    tsvParse,
+    setLayout,
+    setRestricted,
+    setupGraphAnalytics,
 };
