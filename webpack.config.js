@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 // let htmlPageNames = ['index', 'graph', 'graph_free', 'graph_hp', 'iframe'];
 let htmlPageNames = ['index', 'graph_free', 'graph_hp'];
 let multipleHtmlPlugins = htmlPageNames.map((name) => {
     return new HtmlWebpackPlugin({
-        template: `./public/${name}.html`, // relative path to the HTML files
+        template: `./src/html/${name}.html`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
         chunks: [`${name}`], // respective JS files
     });
@@ -38,12 +39,17 @@ module.exports = (env) => {
                     use: ['css-loader'],
                 },
                 {
-                    test: /\.html$/i,
+                    test: /\.mst$/i,
                     loader: 'raw-loader',
                 },
             ],
         },
-        plugins: multipleHtmlPlugins,
+        plugins: [
+            ...multipleHtmlPlugins,
+            new CopyPlugin({
+                patterns: [{ from: 'public', to: 'dist' }],
+            }),
+        ],
         output: {
             path: path.resolve(__dirname, './dist'),
             filename: 'js/[name].bundle.js',

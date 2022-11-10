@@ -1,7 +1,7 @@
 import Mustache from 'mustache';
 import { saveSvgAsPng, saveSvg } from './saveSvgAsPng.js';
 import Equalizer from './equalizer';
-import template from './template/template.mst.html';
+import template from './template/template.html.mst';
 
 // *************************************************************
 // Functions to support config options set above; probably don't need to change these

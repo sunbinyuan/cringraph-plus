@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/sunbinyuan/cringraph-plus#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.5.0",
